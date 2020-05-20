@@ -7,6 +7,7 @@ function CourseList(props) {
     <table className="table">
       <thead>
         <tr>
+          <th>&nbsp;</th>
           <th>Title</th>
           <th>Author ID</th>
           <th>Category</th>
@@ -17,10 +18,21 @@ function CourseList(props) {
           return (
             <tr key={course.id}>
               <td>
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={() => props.deleteCourse(course.id)}
+                >
+                  Delete
+                </button>
+              </td>
+              <td>
                 <Link to={"/course/" + course.slug}>{course.title}</Link>
               </td>
               <td>{course.authorId}</td>
               <td>{course.category}</td>
+              <td>
+                <button type="button" value="Delete" />
+              </td>
             </tr>
           );
         })}
@@ -38,6 +50,7 @@ CourseList.propTypes = {
       category: PropTypes.string.isRequired,
     })
   ).isRequired,
+  deleteCourse: PropTypes.func.isRequired,
 };
 
 export default CourseList;
